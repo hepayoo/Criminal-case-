@@ -1,0 +1,399 @@
+body {
+    margin: 0;
+    padding: 0;
+    
+    background: url('/pics/bg.png') no-repeat center center fixed;
+    background-size:cover;
+    display: flex;
+    flex-direction: column;
+
+    overflow-x: hidden;
+   
+}
+
+.papers {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.vintage {
+    position: absolute;
+    margin-left: -1%;
+    width: 39%;
+    margin-top: -3px;
+    
+  }
+  .case {
+    position: absolute;
+    margin-left: 0%;
+    width: 36%;
+    height: 540px;
+    margin-top: 5%;
+    
+  }
+
+  .stick{
+
+    position: absolute;
+    margin-left: -7%;
+    width: 25%;
+    height: 280px;
+    margin-top: -4%;
+
+  }
+  .card {
+    position: absolute;
+    margin-left: 31%;
+    width: 29%;
+    margin-top: 14%;
+    height: 522px;
+    
+  }
+
+
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-13%, -50%);
+    font-family: "Eater", serif;
+    font-weight: 400; /* Use 100 for thinner letters */
+    font-size: 37px;
+    letter-spacing: 7px;
+    line-height: 0.6; /* Reduce this value to bring the lines closer */
+    margin: 0; /* Ensure there's no extra margin around the text */
+   
+}
+
+.wax-container {
+    position: relative;
+    display: inline-block;
+}
+
+.wax-seal {
+    position: absolute;
+    top: -85px; /* Adjust position to align with "O" */
+    left: -78px;
+    width: 97px; /* Adjust the size of the wax seal */
+    height: 97px;
+}
+
+.empreintes {
+    position: absolute; /* Sticks the element to the viewport */
+    top: -65px; /* Adjust as needed for vertical positioning */
+    right: -90px; /* Adjust the value to move it slightly off-screen */
+    width: 22%; /* Or any width that fits your design */
+    height: auto;
+    margin: 0;
+    margin-bottom: 90px;
+}
+
+
+
+.buttons {
+    position: absolute;
+    margin-left: 58%;
+   margin-top: 35%;
+    
+}
+
+/* From Uiverse.io by Sandra06ram */ 
+.button-1 {
+    position: relative;
+    display: inline-block;
+    padding: 13px 21px;
+    background-color: rgba(220, 214, 179, 0.9);
+    
+    color: #5B3822;
+    text-decoration: none;
+    letter-spacing: 2px;
+    margin-right: 10px; /* Space between buttons */
+    font-family: 'Dancing Script', cursive;
+    font-weight: 300;
+    font-size: 31px;
+    transition: 0.3s;
+    margin-top: 19%;
+  }
+  
+  .button-1::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% - -2px);
+    background-color: #9B7A5B;
+    transition: 0.3s ease-out;
+    transform: scaleY(1);
+  }
+  
+  .button-1::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% - 50px);
+    background-color: #9B7A5B;
+    transition: 0.3s ease-out;
+    transform: scaleY(1);
+  }
+  
+  .button-1:hover::before {
+    transform: translateY(-25px);
+    height: 0;
+  }
+  
+  .button-1:hover::after {
+    transform: scaleX(0);
+    transition-delay: 0.15s;
+  }
+  
+  .button-1:hover {
+    border: 2px solid #9B7A5B;
+  }
+  
+  .button-1 span {
+    position: relative;
+    z-index: 3;
+  }
+  
+  button {
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+  }
+  
+
+.button-2 {
+    display: inline-block;
+    padding: 10px 38px;
+    border: 4px solid #81664D;
+    color: #5B3822;
+    text-decoration: none;
+    font-size: 31px;
+    letter-spacing: 2px;
+    margin-right: 12px; /* Space between buttons */
+    font-family: 'Dancing Script', cursive;
+    font-weight: 300px;
+}
+
+.button-2:hover {
+    background-color: #9B7A5B; /* Darker shade on hover */
+    transform: scale(1.02); /* Slight zoom effect on hover */
+  }
+.criminals-pic{
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.criminals{
+
+
+    position: absolute;
+   
+    width: 100%;
+    
+    transform: translate(0%, 85%);
+   
+}
+
+.serial-killers{
+   
+    top: 0;
+    left: 0;
+   
+    transform: translate(0%, 80%);
+   
+}
+
+.jeffry-dhamer,
+.raya-sakina,
+.ted-bundy,
+.papir {
+    width: 100%; 
+    margin-left: -2%;
+   
+   
+}
+
+
+.footer {
+    background: url('/pics/bg-paper.svg') no-repeat center center;
+    background-size: cover; /* Ensures the background image covers the entire footer */
+    height: 230px; /* Adjust the height as needed */
+    padding: 0px; /* Optional: Adjust padding if necessary */
+    position: relative;
+    font-family: 'Dancing Script', cursive;
+    width: 111%;
+    left: -4%;
+    top: 90rem;
+    color: #5B3822;
+    box-sizing: border-box;
+   
+}
+
+.about-us{
+    left: 55%;
+    position: relative;
+
+}
+.content{
+
+    margin-bottom: 18%;
+    margin-top: -0.6%;
+
+}
+.topic{
+    margin-top: 2%;
+   
+}
+
+.contact-us{
+    left: 15%;
+    position: relative;
+    top: -23rem;
+
+}
+.infos{
+    margin-bottom: -0.7%;
+}
+.gmail{
+    margin-bottom: -0.8%;
+    cursor: pointer;
+}
+.candle {
+    position: absolute; /* Change to absolute for more control */
+    width: 10%;
+    transform: none; /* Remove the transform to see if it resolves the issue */
+    margin: 0;
+    padding: 0;
+    display: block;
+    bottom: 0; /* Position it at the bottom of the footer */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-42rem); /* Center the image horizontally */
+}
+
+
+
+.parent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0rem;  /* to make space between bg-paper and bottom you need to put top: -30rem; :) */
+    position: absolute;
+    left: -10%;
+  }
+  
+  .child {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-in-out;
+    border-radius: 50%;
+    margin: 0 5px;
+  }
+  
+  .child:hover {
+    background-color: #CDC09D;
+    background-position: -100px 100px, -100px 100px;
+    transform: rotate3d(0.5, 1, 0, 30deg);
+    transform: perspective(180px) rotateX(60deg) translateY(2px);
+    box-shadow: 0px 10px 10px rgb(103, 70, 54);
+  }
+  
+  button {
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+  }
+  
+  .button:hover {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate3d(0px, 0px, 15px) perspective(180px) rotateX(-35deg) translateY(2px);
+    border-radius: 50%;
+  }
+
+
+
+
+
+
+
+
+/* From Uiverse.io by catraco */ 
+/*------ Settings ------*/
+.container {
+   
+    --color: #a5a5b0;
+    --size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: var(--size);
+    user-select: none;
+    fill: var(--color);
+    margin-left: 31%;
+    width: 29%;
+   
+  }
+  
+  .container .play {
+    position: absolute;
+    animation: keyframes-fill .5s;
+    margin-top: 30%;
+  }
+  
+  .container .pause {
+    position: absolute;
+    display: none;
+    animation: keyframes-fill .5s;
+    margin-top: 30%;
+  }
+  
+  /* ------ On check event ------ */
+  .container input:checked ~ .play {
+    display: none;
+  }
+  
+  .container input:checked ~ .pause {
+    display: block;
+  }
+  
+  /* ------ Hide the default checkbox ------ */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* ------ Animation ------ */
+  @keyframes keyframes-fill {
+    0% {
+      transform: rotate(-180deg) scale(0);
+      opacity: 0;
+    }
+  
+    50% {
+      transform: rotate(-10deg) scale(1.2);
+    }
+  }
+
+
+
+  
+
