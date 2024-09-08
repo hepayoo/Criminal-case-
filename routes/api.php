@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
-
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,4 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //////////////////////////////////////::Public routes::///////////////////////////////////////
+
+//register route//
 Route::post('register', [RegisteredUserController::class, 'store']);
+
+//logout route//
+Route::middleware('auth:sanctum')->post('logout', [AuthenticatedSessionController::class, 'destroy']);
