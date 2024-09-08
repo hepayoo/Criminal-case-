@@ -32,7 +32,9 @@
             </button>
             
         </form>
-        <p class="signup-link">Not a Member? </p>
+        <p >
+          <router-link to="/register" class="signup-link">Not a Member? </router-link>
+        </p>
     </div>
 </div>
 </div>
@@ -146,7 +148,7 @@ html, body {
     width: 70%;
     margin-left: 60px;
     position: relative;
-    
+    cursor: pointer;
     border: 4px solid #D5CAA4;
     background-color: #7A5A3E;
     color: #D3C8A1;

@@ -17,33 +17,36 @@
                 
             <div class="login-box-r">
                
-                <form>
+                <form @submit.prevent="submit">
                    
                     <div class="input-group-r">
                         <label for="email">Full name</label>
-                        <input type="text" id="email" >
+                        <input type="text" id="name" v-model="fields.name"/>
+                        <span v-if="errors.name" class="error">{{ errors.name[0] }}</span>
                     </div>
                     <div class="input-group-r">
                         <label for="email">Email</label>
-                        <input type="email" id="email" >
+                        <input type="email" id="email" v-model="fields.email"/>
+                        <span v-if="errors.email" class="error">{{ errors.email[0] }}</span>
                     </div>
                     <div class="input-group-r">
                         <label for="password">Password</label>
-                        <input type="password" id="password" >
+                        <input type="password" id="password" v-model="fields.password"/>
+                        <span v-if="errors.password" class="error">{{ errors.password[0] }}</span>
                     </div>
                     <div class="input-group-r">
-                        <label for="password">Confirm password</label>
-                        <input type="password" id="password" >
+                        <label for="password_confirmation">Confirm password</label>
+                        <input type="password" id="password_confirmation" v-model="fields.password_confirmation"/>
                     </div>
         
                     <div class="input-group-r">
-                        <label for="role">Register as:</label>
-                        <select id="role" required>
-                            <option value="" disabled selected>Select Role</option>
-                            <option value="user">User</option>
-                            <option value="family">Family</option>
-                        </select>
-                    </div>
+            <label for="role">Register as:</label>
+            <select id="role" v-model="fields.role" required>
+              <option value="" disabled>Select Role</option>
+              <option value="user">User</option>
+              <option value="family">Family</option>
+            </select>
+          </div>
                     <button type="submit" class="sign-up-button-r">
                         
                         <img :src="'/pics/Sealing wax.png'" class="Wax-r">
@@ -51,7 +54,9 @@
                     </button>
                     
                 </form>
-                <p class="signup-link-r">Already a Member? </p>
+                <p >
+          <router-link to="/login" class="signup-link-r">Already a Member? </router-link>
+        </p>
             </div>
         </div></div>
 
@@ -59,8 +64,35 @@
   </template>
   
   <script>
-  export default {};
+  export default {
+    data() {
+      return {
+        fields: {
+          name: '',
+          email: '',
+          password: '',
+          password_confirmation: '',
+          role: '' 
+        },
+        errors: {},
+      };
+    },
+    methods: {
+      submit() {
+        console.log(this.fields); 
+  
+        axios.post("/api/register", this.fields)
+          .then(() => {
+            this.$router.push({ name: "Dashboard" });
+          })
+          .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+      }
+    }
+  };
   </script>
+  
   
   <style>
 .register-bg{
@@ -71,6 +103,12 @@
     background-size:cover;
   
    
+}
+.error {
+  color: red;
+  display: block;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
 html, body {
     height: 100%;
@@ -160,7 +198,7 @@ html, body {
 }
 
 .sign-up-button-r {
-    padding: px;
+    padding: 3px;
     width: 50%;
     margin-left: 88px;
     position: relative;
@@ -172,7 +210,7 @@ html, body {
     font-family: inherit;
     cursor: hand;
     transition: background-color 0.3s ease;
-    margin-top: 18px;
+    margin-top: 15px;
    
 }
 
@@ -182,11 +220,12 @@ html, body {
 
 .signup-link-r {
     position: relative;
-    margin-top: 1px;
+    margin-top: -10px;
     font-size: 19px;
     color: #5c3a1e;
     cursor: pointer;
     margin-left: 95px;
+
 }
 
 .signup-link-r:hover {
