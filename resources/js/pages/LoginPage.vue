@@ -16,14 +16,16 @@
         
     <div class="login-box">
        
-        <form>
+        <form @submit.prevent="submit">
             <div class="input-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" >
+                <input type="email" id="email" v-model="fields.email"/>
+                <span v-if="errors.email" class="error">{{ errors.email[0] }}</span>
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" >
+                <input type="password" id="password" v-model="fields.password"/>
+                <span v-if="errors.password" class="error">{{ errors.password[0] }}</span>
             </div>
             <button type="submit" class="sign-in-button">
                 
@@ -41,9 +43,28 @@
   </template>
 
   
-  <script>
-  export default {};
-  </script>
+<script>
+export default {
+  data() {
+    return {
+      fields: {},
+      errors: {},
+    };
+  },
+  methods: {
+    submit() {
+      axios
+        .post("/api/login", this.fields)
+        .then(() => {
+          this.$router.push({ name: "Dashboard" });
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
+  },
+};
+</script>
 
   <style>
 
@@ -59,6 +80,13 @@
 html, body {
     height: 100%;
     margin: 0;
+}
+
+.error {
+  color: red;
+  display: block;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
 
 .papers {
