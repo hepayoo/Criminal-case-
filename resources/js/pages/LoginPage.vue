@@ -53,14 +53,18 @@ export default {
   },
   methods: {
     submit() {
-      axios
-        .post("/api/login", this.fields)
-        .then(() => {
-          this.$router.push({ name: "Dashboard" });
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
+        axios.post("/api/login", this.fields)
+      .then((response) => {
+        const userRole = response.data.role; // assuming your API sends back the role
+        if (userRole === 'family') {
+          this.$router.push({ name: 'FamilyDashboard' });
+        } else {
+          this.$router.push({ name: 'UserDashboard' });
+        }
+      })
+      .catch((error) => {
+        this.errors = error.response.data.errors;
+      });
     },
   },
 };
