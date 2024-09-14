@@ -507,6 +507,22 @@ label {
   color: black;
 }
 
+.logout {
+    position: absolute;
+    top: 35px;
+    right: 40px;
+  }
+
+  .welcome{
+    position: absolute;
+    top: 3px;
+    right: 40px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 27px;
+    margin-bottom: 2px;
+    
+  }
+
 
 
 

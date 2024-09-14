@@ -1,8 +1,12 @@
 <template>
     <div >
+   
+    
       <div id="wrapper">
+       
     <!-- sidebar -->
     <div class="sidebar">
+     
       <span class="closeButton">&times;</span>
       
 
@@ -24,11 +28,13 @@
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>
+      
     </div>
 
     <!-- main -->
     <main class="family-container">
-     
+      <h1 class="welcome">Welcome {{ name }}🏛️</h1>
+        <div class="logout"><a href="#" @click="logout">Log out</a></div>
       <router-view></router-view>
      
 
@@ -41,12 +47,31 @@
   </template>
   
   <script>
+  export default {
+    data() {
+      return {
+        name: "",
+      };
+    },
+    mounted() {
+      axios
+        .get("/api/user")
+        .then((response) => (this.name = response.data.name))
+        .catch((error) => console.log(error));
+    },
   
-export default {
-  name: "FamilyDashboard"
-};
-</script>
+    methods: {
+      logout() {
+        axios
+          .post("/api/logout")
+          .then((response) => this.$router.push({ name: "Home" }))
+          .catch((error) => console.log(error));
+      },
+    },
+  };
+  </script>
 
 <style scoped>
+
   @import 'resources/css/familydashboard.css';
 </style>
