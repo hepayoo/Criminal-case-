@@ -56,6 +56,13 @@ const routes = [
     name: 'UserDashboard',
     component: UserDashboard,
     meta: { requiresAuth: true },
+    children: [
+      { path: 'case', name: 'Case', component: Case },
+      { path: 'about', name: 'About', component: About },
+      { path: 'communities', name: 'Communities', component: Communities },
+     
+      { path: 'singlecase/:slug', name: 'SingleCase', component: SingleCase , props: true },
+    ]
   },
 ];
 
