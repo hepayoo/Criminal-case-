@@ -6,6 +6,7 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Api\AdminController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,3 +35,9 @@ Route::middleware('auth:sanctum')->post('logout', [AuthenticatedSessionControlle
 
 //post route//
 Route::middleware('auth:sanctum')->post('posts', [PostController::class, 'store']);
+
+
+Route::middleware('auth:sanctum', 'admin')->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index']);
+    // Add more admin API routes here
+});

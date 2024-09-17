@@ -35,6 +35,8 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
+    meta: { requiresAuth: true, isAdmin: true },
+    
 },
 
 {
@@ -78,9 +80,12 @@ const getUser = async () => {
     const response = await axios.get('/api/user'); // Replace with the correct API endpoint
     return response.data; // Assuming the response includes the user and role
   } catch (error) {
+   
     return null; // If there's an error or no user is authenticated
   }
 };
+
+
 
 // Route guard for authentication and role-based redirection
 router.beforeEach(async (to, from, next) => {
@@ -89,10 +94,13 @@ router.beforeEach(async (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!user) {
       next({ name: 'Login' }); // Redirect to login if the user is not authenticated
+    } else if (user.is_admin==1 && to.name !== 'Dashboard') {
+      next({ name: 'Dashboard' });
     } else if (to.name === 'FamilyDashboard' && user.role !== 'family') {
       next({ name: 'UserDashboard' }); // Redirect if the role doesn't match
     } else if (to.name === 'UserDashboard' && user.role !== 'user') {
       next({ name: 'FamilyDashboard' }); // Redirect if the role doesn't match
+   
     } else {
       next(); // Proceed if everything matches
     }

@@ -20,7 +20,8 @@ class AuthenticatedSessionController extends Controller
 
             return response()->json([
                 'user' => $user,
-                'role' => $user->role,  // Add the role to the response
+                'role' => $user->role,
+                
             ]);
         } else {
             return response()->json(['error' => 'Invalid credentials'], 401);
