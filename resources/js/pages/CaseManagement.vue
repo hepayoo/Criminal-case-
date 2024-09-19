@@ -6,7 +6,7 @@
         <div class="admin-headers">
             <a href="#" ><router-link :to="{ name: 'CreateCase' }">add case</router-link ></a>
            <a href="#"><router-link :to="{ name: 'Home' }">Home</router-link ></a>
-               <a href="#" @click="logout">Log out</a>
+            <a href="#" @click="logout">Log out</a>
         
         
         </div>

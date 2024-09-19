@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CrimeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\AdminController;
 /*
@@ -35,6 +36,9 @@ Route::middleware('auth:sanctum')->post('logout', [AuthenticatedSessionControlle
 
 //post route//
 Route::middleware('auth:sanctum')->post('posts', [PostController::class, 'store']);
+
+//post route//
+Route::middleware('auth:sanctum')->post('crimes', [CrimeController::class, 'store']);
 
 
 Route::middleware('auth:sanctum', 'admin')->group(function () {
