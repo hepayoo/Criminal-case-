@@ -11,6 +11,7 @@ import About from '../pages/About.vue';
 import ReportCase from '../pages/ReportCase.vue';
 import Communities from '../pages/Communities.vue';
 import SingleCase from '../pages/SingleCase.vue';
+import CaseManagement from '../pages/CaseManagement.vue';
 
 const routes = [
   {
@@ -36,8 +37,28 @@ const routes = [
     name: "Dashboard",
     component: Dashboard,
     meta: { requiresAuth: true, isAdmin: true },
+    children: [
+      {
+        path: "casemanagement",
+        name: "CaseManagement",
+        component:CaseManagement ,
+        meta: { requiresAuth: true, isAdmin: true },
+        
+      },
+   
+   
+    ]
+
     
 },
+{
+  path: "/casemanagement",
+  name: "CaseManagement",
+  component:CaseManagement ,
+  
+  
+},
+
 
 {
   path: '/family-dashboard',

@@ -1,0 +1,170 @@
+
+
+
+body, .full-bg-img{
+   
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    background-color:#714D22 ;
+    margin: 0;
+    padding: 0;
+    font-family: 'Dancing Script', cursive;
+}
+.admin-headers {
+    position: absolute;
+    top: 26px;
+    right: 59px;
+    display: flex;
+    gap: 90px;
+    font-size: 21px;
+    color: white;
+    font-family: 'Dancing Script', cursive;
+}
+
+.admin-headers a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 5px;
+   
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    font-family: 'Dancing Script', cursive;
+}
+
+.admin-headers a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-family: 'Dancing Script', cursive;
+}
+
+
+
+.menu-buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -1%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+}
+.menu-buttons-cases {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -62%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+}
+
+.menu-buttons p {
+   
+    color: #5b3811;
+    font-size: 39px;
+   
+    font-weight: 710;
+    padding: 15px 40px;
+    cursor: pointer;
+    font-family: 'Dancing Script', cursive;
+    
+    transition: transform 0.2s;
+}
+.menu-buttons-cases p {
+   
+    color: #5b3811;
+    font-size: 39px;
+   
+    font-weight: 710;
+    padding: 15px 40px;
+    cursor: pointer;
+    font-family: 'Dancing Script', cursive;
+    
+    transition: transform 0.2s;
+}
+
+.menu-buttons p:hover {
+    transform: scale(1.2);
+    font-family: 'Dancing Script', cursive;
+
+}
+.menu-buttons-cases p:hover {
+    transform: scale(1.2);
+    font-family: 'Dancing Script', cursive;
+}
+
+.menu-buttons p:focus {
+    outline: none;
+    font-family: 'Dancing Script', cursive;
+}
+
+.menu-buttons-cases p:focus {
+    outline: none;
+    font-family: 'Dancing Script', cursive;
+}
+
+
+.admin-cases{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 10%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    font-size: 33px;
+    font-weight: bold;
+    
+    font-family: 'Dancing Script', cursive;
+
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    width: 75rem;
+    background: #6B492E; 
+    margin: 0px 0; 
+    transform: translate(0%, 0%);
+    padding: 0%;
+}
+
+.case-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0px 0;
+    font-family: 'Dancing Script', cursive;
+}
+
+.case-name {
+    font-size: 24px;
+    font-weight: bold;
+    transform: translate(290%, 0%);
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Button styling */
+.case-actions button  {
+    padding: 11px 30px;
+    margin-left: 80px;
+    font-size: 22px;
+    color: #D5CAA4;
+    background-color: #7A5A3E;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    transform: translate(-270%, 0%);
+    font-family: 'Dancing Script', cursive;
+    cursor: hand;
+    font-weight: bold;
+   
+}
+
+

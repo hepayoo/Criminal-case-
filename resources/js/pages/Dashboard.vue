@@ -1,7 +1,25 @@
 <template>
+    <div class="admin-bg">
+      
+          <img :src="'/pics/Espace admin.svg'" alt="Admin Background" class="full-bg-img">
+  
+         <div class="admin-headers">
+  
+          
+          <a href="#"><router-link :to="{ name: 'Home' }">Home</router-link ></a>
+          <a href="#" @click="logout">Log out</a>
+         </div>
+         
+  
+         <div class="menu-buttons">
+          <router-link :to="{ name: 'CaseManagement' }"><p>Case Management</p></router-link >
+          <p>Family Case Management</p>
+          <p>Community Management</p>
+      </div>
+     
 
-    <h1>helllo{{ name }}</h1>
-    <div class="logout"><a href="#" @click="logout">Log out</a></div>
+      </div>
+  
     
 </template>
 
@@ -30,3 +48,8 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+  @import 'resources/css/admin.css';
+</style>
