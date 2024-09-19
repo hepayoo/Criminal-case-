@@ -15,7 +15,8 @@ class CrimeController extends Controller
         // Validate incoming request data
         $request->validate([
             'title' => 'required',
-            'file' => 'required | image', // File upload is optional, must be an image
+            'desc'=>'required',
+            'file' => 'required|image|mimes:jpg,jpeg,png,gif,svg|max:2048', // File upload is optional, must be an image
             'biography' => 'required',
             'murders' => 'required',
             'arrests' => 'required',
@@ -25,14 +26,12 @@ class CrimeController extends Controller
         // Generate a unique slug
         $title = $request->title;
         
-        if (!Crime::count()) {
-            $postId = 1;
-        } else {
-            $crimeId = Crime::latest()->first()->id + 1;
-        }
+        $latestCrime = Crime::latest()->first();
+        $crimeId = $latestCrime ? $latestCrime->id + 1 : 1;
         $slug = Str::slug($title, '-') . '-' . $crimeId;
         $user_id = auth()->user()->id;
         $biography = $request->input('biography');
+        $desc = $request->input('desc');
         $murders = $request->input('murders');
         $arrests = $request->input('arrests');
         $sources = $request->input('sources');
@@ -43,6 +42,7 @@ class CrimeController extends Controller
         $crime->title = $title;
         $crime->user_id = $user_id;
         $crime->biography = $biography;
+        $crime->desc = $desc;
         $crime->murders = $murders;
         $crime->arrests = $arrests;
         $crime->sources = $sources;

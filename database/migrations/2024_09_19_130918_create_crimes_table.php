@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Reference to the user (assumed to have a 'users' table)
             $table->string('title');
+            $table->string('desc');
             $table->string('imagePath')->nullable();
             $table->string('biography');
             $table->text('murders');

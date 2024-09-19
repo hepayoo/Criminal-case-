@@ -13,9 +13,13 @@
             <label for="criminal-name">Criminal Name:</label>
             <input type="text" id="criminal-name" v-model="fields.title"/>
             <span v-if="errors.title" class="error">{{ errors.title[0] }}</span>
+
+            <label for="criminal-description">Criminal description:</label>
+            <input type="text" id="criminal-description" v-model="fields.desc"/>
+            <span v-if="errors.desc" class="error">{{ errors.desc[0] }}</span>
     
             <label for="upload-image">Upload Image:</label>
-            <input type="file" id="upload-image" @input="grabFile" />
+            <input type="file" id="upload-image"  @change="grabFile" ref="fileInput"/>
             <span v-if="errors.file" class="error">{{ errors.file[0] }}</span>
             <div class="preview">
               <img :src="url" alt="" />
@@ -49,7 +53,15 @@
         data() {
     return {
       success: false,
-      fields: {},
+      fields: {
+      title: '',
+      desc: '',
+      biography: '',
+      murders: '',
+      arrests: '',
+      sources: '',
+      file: null
+    },
       errors: {},
       url:"",
       
@@ -61,9 +73,11 @@ methods: {
         const file = e.target.files[0];
         this.fields.file = file;
         this.url = URL.createObjectURL(file);
-        URL.revokeObjectURL(file);
+       
       },
       submit() {
+
+   
         axios
           .post("/api/crimes", this.fields, {
             headers: { "content-type": "multipart/form-data" },
@@ -74,14 +88,19 @@ methods: {
             
             this.success = true;
             this.errors = {};
+            this.$refs.fileInput.value = "";
             setTimeout(() => {
               this.success = false;
             }, 2500);
           })
           .catch((error) => {
-            this.errors = error.response.data.errors;
-            this.success = false;
-          });
+  if (error.response && error.response.data.errors) {
+    this.errors = error.response.data.errors;
+  } else {
+    console.error("Unknown error", error);
+  }
+  this.success = false;
+});
       },
     },
     };
