@@ -6,7 +6,7 @@ body, .full-bg-img{
     width: 100%;
     height: 50%;
     object-fit: cover;
-    background-color:#714D22 ;
+    background-color:#E8E0BB  ;
     margin: 0;
     padding: 0;
     font-family: 'Dancing Script', cursive;
@@ -165,6 +165,72 @@ hr {
     cursor: hand;
     font-weight: bold;
    
+}
+
+
+/*admin*/
+.case-form-container {
+    overflow-x: hidden;
+  
+  
+    margin-left: 310px;
+    font-family: 'Dancing Script', cursive;
+}
+
+.case-form {
+   
+    padding: 20px;
+  
+   
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 300px;
+    font-family: 'Dancing Script', cursive;
+}
+
+label {
+    font-size: 20px;
+    color: #674f38;
+    font-family: 'Dancing Script', cursive; /* Light brown */
+}
+
+input[type="text"],
+textarea {
+    background-color: #B2A081; /* Medium brown */
+    border: none;
+    padding: 11px;
+    color: whitesmoke;
+    font-size: 16px;
+    width:40rem;
+   font-family:'Cutive Mono' ,cursive;
+}
+
+input[type="file"] {
+    background-color: #B2A081;
+    border: none;
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+    width:40rem;
+}
+
+.submit-button {
+    background-color: #B2A081;
+    color: white;
+    padding: 12px;
+    border: none;
+    font-family: 'Dancing Script', cursive;
+    font-size: 25px;
+    cursor: pointer;
+    transform: translate(90%, 0%);
+    width: 14rem;
+  
+}
+
+.submit-button:hover {
+    background-color: #674f38;
+    font-family: 'Dancing Script', cursive; 
 }
 
 

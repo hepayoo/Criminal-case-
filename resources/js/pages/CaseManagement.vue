@@ -4,7 +4,7 @@
          <img :src="'pics/Case Management.svg'" alt="Admin Background" class="full-bg-img">
  
         <div class="admin-headers">
-            <a href="#" >Add case</a>
+            <a href="#" ><router-link :to="{ name: 'CreateCase' }">add case</router-link ></a>
            <a href="#"><router-link :to="{ name: 'Home' }">Home</router-link ></a>
                <a href="#" @click="logout">Log out</a>
         
