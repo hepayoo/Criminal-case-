@@ -2,11 +2,11 @@
     <div class="searchbar">
         <form action="">
           <input type="text" placeholder="Search...." name="search" />
-
+  
           <button type="submit">
             <i class="fa fa-search"></i>
           </button>
-
+  
         </form>
       </div>
       <div class="categories">
@@ -27,24 +27,24 @@
             
             <router-link
           :to="{
-            name: 'SingleCase',
-            params: { slug: 'jefrrydhamer' },
+            name: 'UserSingleCase',
+            params: { slug : crime.slug },
           }"
           ><button>Tap to see the Case</button></router-link >
         
           </div>
         </div>
-
+  
        
-
+  
       
-
+  
        
-
+  
      
-
+  
     
-
+  
         <!-- pagination -->
         <div class="pagination" id="pagination">
           <a href="">&laquo;</a>
@@ -56,17 +56,17 @@
           <a href="">&raquo;</a>
         </div>
       </section>
-</template>
-
-<script>
-export default {
- 
+  </template>
+  
+  <script>
+  export default {
+  
   data() {
     return {
       crimes: [],
     };
   },
-
+  
   mounted() {
     axios
       .get("/api/home-crimes")
@@ -75,9 +75,9 @@ export default {
         console.log(error);
       });
   },
-};
-</script>
-
-<style scoped>
+  };
+  </script>
+  
+  <style scoped>
   @import 'resources/css/familydashboard.css';
-</style>
+  </style>

@@ -326,7 +326,7 @@ footer small {
     position: absolute;
     bottom: 60px;
     left: 12px;
-    width: 70px; /* Adjust the image size */
+    width: 90px; /* Adjust the image size */
     height: auto;
     
     object-fit: cover;

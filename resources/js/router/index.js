@@ -6,90 +6,86 @@ import LoginPage from '../pages/LoginPage.vue';
 import Dashboard from '../pages/Dashboard.vue';
 import FamilyDashboard from '../pages/FamilyDashboard.vue';
 import UserDashboard from '../pages/UserDashboard.vue';
-import Case from '../pages/Case.vue';
-import About from '../pages/About.vue';
+import FamilyCase from '../pages/FamilyCase.vue'; 
+import FamilyAbout from '../pages/FamilyAbout.vue';
 import ReportCase from '../pages/ReportCase.vue';
-import Communities from '../pages/Communities.vue';
-import SingleCase from '../pages/SingleCase.vue';
+import FamilyCommunities from '../pages/FamilyCommunities.vue';
+import FamilySingleCase from '../pages/FamilySingleCase.vue';
 import CaseManagement from '../pages/CaseManagement.vue';
 import CreateCase from "../pages/CreateCase.vue";
 
+import UserCase from '../pages/UserCase.vue'; 
+import UserAbout from '../pages/UserAbout.vue';
+import UserCommunities from '../pages/UserCommunities.vue';
+import UserSingleCase from '../pages/UserSingleCase.vue';
 
-
-
+import EditCases from '../pages/EditCases.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: HomePage, // Displays "Hello Vue" and the Register button
+    component: HomePage, 
   },
-
   {
     path: '/register',
     name: 'Register',
     component: RegisterPage,
-    meta: { requiresGuest: true } // Displays the Register page
+    meta: { requiresGuest: true }
   },
   {
     path: '/login',
     name: 'Login',
     component: LoginPage,
-    meta: { requiresGuest: true } // Displays the Register page
+    meta: { requiresGuest: true }
   },
   {
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
     meta: { requiresAuth: true, isAdmin: true },
- 
-
+  },
+  {
+    path: "/casemanagement",
+    name: "CaseManagement",
+    component: CaseManagement,
+  },
+  {
+    path: "/createcase",
+    name: "CreateCase",
+    component: CreateCase,
+  },
+  {
+    path: "/cases/:slug/edit",
+    name: "EditCases",
+    component: EditCases,
+    meta:{requiresAuth:true},
+    props:true
     
 },
-{
-  path: "/casemanagement",
-  name: "CaseManagement",
-  component:CaseManagement ,
-  
-  
-},
-{
-  path: "/createcase",
-  name: "CreateCase",
-  component:CreateCase ,
-  
-  
-},
-
-
-
-
-
-{
-  path: '/family-dashboard',
-  name: 'FamilyDashboard',
-  component: FamilyDashboard,
-  meta: { requiresAuth: true },
-  // Nested routes for family dashboard
-  children: [
-    { path: 'case', name: 'Case', component: Case },
-    { path: 'about', name: 'About', component: About },
-    { path: 'communities', name: 'Communities', component: Communities },
-    { path: 'reportcase', name: 'ReportCase', component: ReportCase },
-    { path: 'singlecase/:slug', name: 'SingleCase', component: SingleCase , props: true },
-  ]
-},
+  {
+    path: '/family-dashboard',
+    name: 'FamilyDashboard',
+    component: FamilyDashboard,
+    meta: { requiresAuth: true },
+    children: [
+      { path: 'case', name: 'FamilyCase', component: FamilyCase }, // Fixed
+      { path: 'about', name: 'FamilyAbout', component: FamilyAbout },
+      { path: 'communities', name: 'FamilyCommunities', component: FamilyCommunities },
+      { path: 'reportcase', name: 'ReportCase', component: ReportCase },
+      { path: 'singlecase/:slug', name: 'FamilySingleCase', component: FamilySingleCase, props: true },
+    ]
+  },
   {
     path: '/user-dashboard',
     name: 'UserDashboard',
     component: UserDashboard,
     meta: { requiresAuth: true },
     children: [
-      { path: 'case', name: 'Case', component: Case },
-      { path: 'about', name: 'About', component: About },
-      { path: 'communities', name: 'Communities', component: Communities },
-     
-      { path: 'singlecase/:slug', name: 'SingleCase', component: SingleCase , props: true },
+      { path: 'case', name: 'UserCase', component: UserCase }, // Fixed
+      { path: 'about', name: 'UserAbout', component: UserAbout },
+      { path: 'communities', name: 'UserCommunities', component: UserCommunities },
+      { path: 'singlecase/:slug', name: 'UserSingleCase', component: UserSingleCase, props: true },
     ]
   },
 ];
@@ -99,39 +95,31 @@ const router = createRouter({
   routes,
 });
 
-
-
 const getUser = async () => {
   try {
-    const response = await axios.get('/api/user'); // Replace with the correct API endpoint
-    return response.data; // Assuming the response includes the user and role
+    const response = await axios.get('/api/user'); 
+    return response.data;
   } catch (error) {
-   
-    return null; // If there's an error or no user is authenticated
+    return null;
   }
 };
 
-
-
-// Route guard for authentication and role-based redirection
 router.beforeEach(async (to, from, next) => {
-  const user = await getUser(); // Fetch the authenticated user from the API
-
+  const user = await getUser(); 
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!user) {
-      next({ name: 'Login' }); // Redirect to login if the user is not authenticated
-    } else if (user.is_admin==1 && to.name !== 'Dashboard') {
+      next({ name: 'Login' });
+    } else if (user.is_admin == 1 && to.name !== 'Dashboard') {
       next({ name: 'Dashboard' });
     } else if (to.name === 'FamilyDashboard' && user.role !== 'family') {
-      next({ name: 'UserDashboard' }); // Redirect if the role doesn't match
+      next({ name: 'UserDashboard' });
     } else if (to.name === 'UserDashboard' && user.role !== 'user') {
-      next({ name: 'FamilyDashboard' }); // Redirect if the role doesn't match
-   
+      next({ name: 'FamilyDashboard' });
     } else {
-      next(); // Proceed if everything matches
+      next();
     }
   } else {
-    next(); // Proceed if no auth is required
+    next();
   }
 });
 

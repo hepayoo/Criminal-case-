@@ -13,9 +13,9 @@
     <div class="side-links">
       <ul>
        
-        <li>  <router-link :to="{ name: 'Case' }">Cases</router-link ></li>
-        <li> <router-link :to="{ name: 'About' }">About-us</router-link ></li>
-        <li> <router-link :to="{ name: 'Communities' }">My communities</router-link ></li>
+        <li>  <router-link :to="{ name: 'UserCase' }">Cases</router-link ></li>
+        <li> <router-link :to="{ name: 'UserAbout' }">About-us</router-link ></li>
+        <li> <router-link :to="{ name: 'UserCommunities' }">My communities</router-link ></li>
         
        
       </ul>

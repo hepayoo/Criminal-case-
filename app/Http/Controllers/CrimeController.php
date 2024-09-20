@@ -5,6 +5,7 @@ use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 use App\Models\Crime;
+use App\Http\Resources\CrimeResource;
 
 
 
@@ -52,5 +53,12 @@ class CrimeController extends Controller
 
         
       
+    }
+
+
+    public function show(Crime $crime)
+    {
+      
+        return new CrimeResource($crime);
     }
 }

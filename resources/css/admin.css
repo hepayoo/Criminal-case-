@@ -3,13 +3,17 @@
 
 body, .full-bg-img{
    
-    width: 100%;
-    height: 50%;
-    object-fit: cover;
+    width: 100%;            
+    min-height: 100vh;         
+    object-fit: cover;  
     background-color:#E8E0BB  ;
     margin: 0;
     padding: 0;
     font-family: 'Dancing Script', cursive;
+    background-size: cover;  /* Ensures the image scales properly */
+    background-position: center center;
+    background-repeat: no-repeat; 
+    display: block; 
 }
 .admin-headers {
     position: absolute;
@@ -113,7 +117,7 @@ body, .full-bg-img{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 10%);
+    transform: translate(-50%, 1%);
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -131,28 +135,31 @@ hr {
     width: 75rem;
     background: #6B492E; 
     margin: 0px 0; 
-    transform: translate(0%, 0%);
+    transform: translate(0%, -10%);
     padding: 0%;
 }
 
 .case-container {
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 0px 0;
+   /* Ensures case name and buttons are spaced across the container */
+    align-items: center; /* Vertically aligns items in the center */
+    padding: 10px 0;
     font-family: 'Dancing Script', cursive;
+    border-bottom: 1px solid #6B492E;
 }
 
 .case-name {
     font-size: 24px;
     font-weight: bold;
-    transform: translate(290%, 0%);
+    flex-grow: 1; /* Allows the case name to take up available space */
+    text-align: center;
+    padding-left: 20px; /* Optional padding to align nicely */
     font-family: 'Dancing Script', cursive;
 }
 
 /* Button styling */
 .case-actions button  {
-    padding: 11px 30px;
+    padding: 10px 30px;
     margin-left: 80px;
     font-size: 22px;
     color: #D5CAA4;
@@ -160,7 +167,7 @@ hr {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    transform: translate(-270%, 0%);
+    transform: translate(-270%, -5%);
     font-family: 'Dancing Script', cursive;
     cursor: hand;
     font-weight: bold;
@@ -232,5 +239,8 @@ input[type="file"] {
     background-color: #674f38;
     font-family: 'Dancing Script', cursive; 
 }
+
+
+
 
 

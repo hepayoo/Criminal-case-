@@ -9,6 +9,7 @@ use App\Http\Controllers\CrimeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardCrimeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,7 +44,9 @@ Route::middleware('auth:sanctum')->post('crimes', [CrimeController::class, 'stor
 
 Route::get('home-crimes', [HomeController::class, 'index']);
 
+Route::get('crimes/{crime:slug}', [CrimeController::class, 'show']);
 
+Route::get('dashboard-crimes', [DashboardCrimeController::class, 'index']);
 
 //admin//
 Route::middleware('auth:sanctum', 'admin')->group(function () {
