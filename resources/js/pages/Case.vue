@@ -18,12 +18,12 @@
         </ul>
       </div>
       <section class="cards-blog latest-blog">
-        <div class="card-blog-content">
+        <div class="card-blog-content" v-for="crime in crimes" :key="crime.id">
           <img :src="'/pics/file.svg'" alt="" />
           <div class="content-overlay">
-            <h1>Jeffrey Dahmer</h1>
-            <p>Infamous Serial killer born in<br> 1978, he was a rapist, a<br> cannibal, a necrophiliac</p>
-            <img :src="'/pics/jeffry-criminal.svg'" alt="Jeffrey Dahmer" class="jeffrey-img" />
+            <h1> {{ crime.title }}</h1>
+            <p>{{ crime.desc }}</p>
+            <img :src="'/' + crime.imagePath" alt="Crime Image" class="jeffrey-img" />
             
             <router-link
           :to="{
@@ -35,35 +35,11 @@
           </div>
         </div>
 
-        <div class="card-blog-content">
-          <img :src="'/pics/file.svg'" alt="" />
-         <div class="content-overlay">
-            <h1>Raya and Sekina</h1>
-            <p>Two infamous Egyptian sisters<br> for their enrollment in a series <br>of brutal murders in the <br>early 20thcentury</p>
-            <img :src="'/pics/raya-sekina-criminals.svg'" alt="Jeffrey Dahmer" class="egypt-img" />
-            <button>Tap to see the Case</button>
-          </div>
-        </div>
+       
 
-        <div class="card-blog-content">
-          <img :src="'/pics/file.svg'" alt="" />
-          <div class="content-overlay">
-            <h1>The papin sisters</h1>
-            <p>Christine and lea, french siblings<br> who became infamous for a<br> brutal double murder in 1933.</p>
-            <img :src="'/pics/papin-criminals.svg'" alt="Jeffrey Dahmer" class="jeffrey-img" />
-            <button>Tap to see the Case</button>
-          </div>
-        </div>
+      
 
-        <div class="card-blog-content">
-          <img :src="'/pics/file.svg'" alt="" />
-          <div class="content-overlay">
-            <h1>Ted Bundy</h1>
-            <p>Was one of the most infamous <br>serial killers in American<br> history. Active in the 1970s</p>
-            <img :src="'/pics/ted-criminal.svg'" alt="Jeffrey Dahmer" class="jeffrey-img" />
-            <button>Tap to see the Case</button>
-          </div>
-        </div>
+       
 
      
 
@@ -83,9 +59,22 @@
 </template>
 
 <script>
-  
 export default {
-  name: "Case"
+ 
+  data() {
+    return {
+      crimes: [],
+    };
+  },
+
+  mounted() {
+    axios
+      .get("/api/home-crimes")
+      .then((response) => (this.crimes = response.data.data))
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 </script>
 

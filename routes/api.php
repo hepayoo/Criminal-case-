@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CrimeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\AdminController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,8 +41,12 @@ Route::middleware('auth:sanctum')->post('posts', [PostController::class, 'store'
 //post route//
 Route::middleware('auth:sanctum')->post('crimes', [CrimeController::class, 'store']);
 
+Route::get('home-crimes', [HomeController::class, 'index']);
 
+
+
+//admin//
 Route::middleware('auth:sanctum', 'admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index']);
-    // Add more admin API routes here
+    
 });
