@@ -109,7 +109,7 @@ router.beforeEach(async (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!user) {
       next({ name: 'Login' });
-    } else if (user.is_admin == 1 && to.name !== 'Dashboard') {
+    } else if (user.is_admin == 1 && to.name !== 'Dashboard' && to.name !== 'CreateCase' && to.name !== 'EditCases') {
       next({ name: 'Dashboard' });
     } else if (to.name === 'FamilyDashboard' && user.role !== 'family') {
       next({ name: 'UserDashboard' });

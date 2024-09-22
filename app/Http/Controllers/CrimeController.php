@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Crime;
 use App\Http\Resources\CrimeResource;
+use Illuminate\Support\Facades\File;
 
 
 
@@ -58,7 +59,52 @@ class CrimeController extends Controller
 
     public function show(Crime $crime)
     {
-      
+        if (auth()->user()->is_admin !== 1) {
+            return abort(403, 'Unauthorized action.');
+        }
         return new CrimeResource($crime);
     }
+
+    public function update(Request $request, Crime $crime)
+    {
+        if (auth()->user()->is_admin !== 1) {
+            return abort(403, 'Unauthorized action.');
+        }
+    
+        $request->validate([
+            'title' => 'required',
+            'file' => 'nullable|image',
+            'desc' => 'required',
+            'biography' => 'required',
+            'murders' => 'required',
+            'arrests' => 'required',
+            'sources' => 'required',
+        ]);
+    
+        // Only regenerate slug if title has changed
+        if ($crime->title !== $request->title) {
+            $title = $request->title;
+            $slug = Str::slug($title, '-') . '-' . $crime->id;
+            $crime->slug = $slug;
+        }
+    
+        $crime->title = $request->input('title');
+        $crime->desc = $request->input('desc');
+        $crime->biography = $request->input('biography');
+        $crime->murders = $request->input('murders');
+        $crime->arrests = $request->input('arrests');
+        $crime->sources = $request->input('sources');
+    
+        // If there's a new file, delete the old one and store the new image
+        if ($request->file('file')) {
+            File::delete(public_path($crime->imagePath)); // Safely delete old image
+            $imagePath = 'storage/' . $request->file('file')->store('crimesImages', 'public');
+            $crime->imagePath = $imagePath;
+        }
+    
+        $crime->save();
+    
+        return response()->json(['message' => 'Crime updated successfully', 'data' => new CrimeResource($crime)], 200);
+    }
+    
 }

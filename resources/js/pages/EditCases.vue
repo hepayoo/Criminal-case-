@@ -49,62 +49,84 @@
     </template>
     
     <script>
-    export default{
-        data() {
-    return {
-      success: false,
-      fields: {
-      title: '',
-      desc: '',
-      biography: '',
-      murders: '',
-      arrests: '',
-      sources: '',
-      file: null
-    },
-      errors: {},
-      url:"",
-      
-    }
-
-},
-methods: {
-      grabFile(e) {
-        const file = e.target.files[0];
-        this.fields.file = file;
-        this.url = URL.createObjectURL(file);
-       
+    export default {
+      props: ["slug"],
+      data() {
+        return {
+          success: false,
+          fields: {
+            title: '',
+            desc: '',
+            biography: '',
+            murders: '',
+            arrests: '',
+            sources: '',
+            file: null,
+          },
+          errors: {},
+          url: '',
+        };
       },
-      submit() {
+      
+      methods: {
+        grabFile(e) {
+          const file = e.target.files[0];
+          this.fields.file = file;
+          if (this.url) {
+    URL.revokeObjectURL(this.url); 
+  }
+  this.url = URL.createObjectURL(file);
+        },
+        
+        submit() {
+  const fd = new FormData();
+  fd.append("title", this.fields.title);
+  fd.append("desc", this.fields.desc);
+  if (this.fields.file) {
+    fd.append("file", this.fields.file);
+  }
+  fd.append("biography", this.fields.biography);
+  fd.append("murders", this.fields.murders);
+  fd.append("arrests", this.fields.arrests);
+  fd.append("sources", this.fields.sources);
+  fd.append("_method", "PUT");
 
-   
+  axios
+    .post(`/api/crimes/${this.slug}`, fd, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    })
+    .then((res) => {
+      this.success = true; // Display success message
+      setTimeout(() => {
+        this.success = false; // Hide success message after 3 seconds
+        this.$router.push({ name: "CaseManagement" });
+      }, 3000); // Success message visible for 3 seconds
+    })
+    .catch((error) => {
+      this.errors = error.response.data.errors;
+      if (error.response.status === 403) {
+        this.$router.push({ name: "CaseManagement" });
+      }
+    });
+  },
+      },
+      
+      mounted() {
         axios
-          .post("/api/crimes", this.fields, {
-            headers: { "content-type": "multipart/form-data" },
-          })
-          .then(() => {
-            this.fields = {};
-            this.url = null;
-            
-            this.success = true;
-            this.errors = {};
-            this.$refs.fileInput.value = "";
-            setTimeout(() => {
-              this.success = false;
-            }, 2500);
+          .get("/api/crimes/" + this.slug)
+          .then((response) => {
+            this.fields = response.data.data;
+            this.url = "/" + response.data.data.imagePath;
           })
           .catch((error) => {
-  if (error.response && error.response.data.errors) {
-    this.errors = error.response.data.errors;
-  } else {
-    console.error("Unknown error", error);
-  }
-  this.success = false;
-});
+            console.log(error);
+          });
       },
-    },
     };
-</script>
+    </script>
+    
     
     <style scoped>
     

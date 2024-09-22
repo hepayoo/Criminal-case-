@@ -36,11 +36,12 @@ Route::post('login', [AuthenticatedSessionController::class, 'store']);
 //logout route//
 Route::middleware('auth:sanctum')->post('logout', [AuthenticatedSessionController::class, 'destroy']);
 
-//post route//
+//crimes-post route for family//
 Route::middleware('auth:sanctum')->post('posts', [PostController::class, 'store']);
 
-//post route//
+//post route for admin//
 Route::middleware('auth:sanctum')->post('crimes', [CrimeController::class, 'store']);
+Route::middleware('auth:sanctum')->put('crimes/{crime:slug}', [CrimeController::class, 'update']);
 
 Route::get('home-crimes', [HomeController::class, 'index']);
 
