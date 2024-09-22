@@ -27,7 +27,7 @@
            <div class="case-actions">
               
                <router-link :to="{ name: 'EditCases', params: { slug: crime.slug } }" > <button>Edit</button></router-link>
-               <button>Delete</button>
+               <button @click="destroy(crime.slug)">Delete</button>
                
            </div>
          
@@ -47,40 +47,59 @@
 
 <script>
 export default {
-emits: ["updateSidebar"],
+  emits: ["updateSidebar"],
 
-data() {
-  return {
-    name: "",
-    crimes: [],
-    success: false,
-  };
-},
-
-mounted() {
-  // Fetch user information "name"
-  axios
-    .get("/api/user")
-    .then((response) => (this.name = response.data.name))
-    .catch((error) => console.log(error));
-
-  // Fetch dashboard posts to be displayed in page
-  axios
-    .get("/api/dashboard-crimes")
-    .then((response) => (this.crimes = response.data.data))
-    .catch((error) => {
-      console.log(error);
-    });
-},
-
-methods: {
-  logout() {
-    axios
-      .post("/api/logout")
-      .then((response) => this.$router.push({ name: "Home" }))
-      .catch((error) => console.log(error));
+  data() {
+    return {
+      name: "",
+      crimes: [],
+      success: false,
+    };
   },
-},
+
+  methods: {
+    async destroy(slug) {
+      try {
+        await axios.delete(`/api/crimes/${slug}`);
+        this.fetchCrimes();
+        this.success = true;
+        setTimeout(() => {
+          this.success = false;
+        }, 2500);
+      } catch (error) {
+        console.log(error.response.data);
+      }
+    },
+
+    async fetchCrimes() {
+      try {
+        const response = await axios.get("/api/dashboard-crimes");
+        this.crimes = response.data.data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async logout() {
+      try {
+        await axios.post("/api/logout");
+        this.$router.push({ name: "Home" });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+
+  mounted() {
+    // Fetch user information "name"
+    axios
+      .get("/api/user")
+      .then((response) => (this.name = response.data.name))
+      .catch((error) => console.log(error));
+
+    // Fetch dashboard posts to be displayed in page
+    this.fetchCrimes();
+  },
 };
 </script>
 

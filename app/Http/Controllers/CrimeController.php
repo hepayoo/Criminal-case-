@@ -59,17 +59,17 @@ class CrimeController extends Controller
 
     public function show(Crime $crime)
     {
-        if (auth()->user()->is_admin !== 1) {
-            return abort(403, 'Unauthorized action.');
+        if (auth()->user()->id !== $crime->user_id && !auth()->user()->is_admin) {
+            return response()->json(['message' => 'Unauthorized'], 403);
         }
         return new CrimeResource($crime);
     }
 
     public function update(Request $request, Crime $crime)
     {
-        if (auth()->user()->is_admin !== 1) {
-            return abort(403, 'Unauthorized action.');
-        }
+      
+
+  
     
         $request->validate([
             'title' => 'required',
@@ -105,6 +105,13 @@ class CrimeController extends Controller
         $crime->save();
     
         return response()->json(['message' => 'Crime updated successfully', 'data' => new CrimeResource($crime)], 200);
+    }
+
+    public function destroy(Crime $crime)
+    {
+     
+
+        return $crime->delete();
     }
     
 }
