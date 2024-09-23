@@ -37,24 +37,21 @@ Route::post('login', [AuthenticatedSessionController::class, 'store']);
 Route::middleware('auth:sanctum')->post('logout', [AuthenticatedSessionController::class, 'destroy']);
 
 //crimes-post route for family//
+Route::middleware('auth:sanctum')->post('posts', [PostController::class, 'store']);
 
+//post route for admin//
+Route::middleware('auth:sanctum')->post('crimes', [CrimeController::class, 'store']);
+Route::middleware('auth:sanctum')->put('crimes/{crime:slug}', [CrimeController::class, 'update']);
+Route::delete('crimes/{crime:slug}', [CrimeController::class, 'destroy']);
+
+Route::get('home-crimes', [HomeController::class, 'index']);
+
+Route::get('crimes/{crime:slug}', [CrimeController::class, 'show']);
+
+Route::get('dashboard-crimes', [DashboardCrimeController::class, 'index']);
+Route::get('crimes', [CrimeController::class, 'index']);
 
 //admin//
-// Admin routes with 'auth:sanctum' and 'admin' middlewares
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
-    // Admin dashboard
     Route::get('/admin/dashboard', [AdminController::class, 'index']);
-    
-    // Crimes routes for admin (post and update)
-    Route::post('crimes', [CrimeController::class, 'store']);
-    Route::put('crimes/{crime:slug}', [CrimeController::class, 'update']);
-    Route::delete('crimes/{crime:slug}', [CrimeController::class, 'destroy']);
-    // Dashboard crimes
-    Route::get('dashboard-crimes', [DashboardCrimeController::class, 'index']);
-    
-    // Home crimes (admin)
-    Route::get('home-crimes', [HomeController::class, 'index']);
-    
-    // Show crime (admin)
-    Route::get('crimes/{crime:slug}', [CrimeController::class, 'show']);
 });

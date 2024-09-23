@@ -1,22 +1,8 @@
 <template>
-  <div class="searchbar">
- <form action="">
-   <input type="text" placeholder="Search...." name="search" />
+  
 
-   <button type="submit">
-     <i class="fa fa-search"></i>
-   </button>
 
- </form>
-</div>
-<div class="categories">
- <ul>
-   <li><a href="">Missing-people</a></li>
-   <li><a href="">Canibal</a></li>
-   <li><a href="">Violence</a></li>
-   <li><a href="">Rapping</a></li>
- </ul>
-</div>
+
 <div class="section">
  <div class="section-title">{{ crime.title }}</div>
  <div class="image-section">

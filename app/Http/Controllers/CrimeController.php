@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\File;
 
 class CrimeController extends Controller
 {
+    public function index(Request $request)
+    {
+      if ($request->search) {
+            return  CrimeResource::collection(Crime::where('title', 'like', '%' . $request->search . '%')
+                ->orWhere('desc', 'like', '%' . $request->search . '%')->latest()->get());
+        }
+
+        return CrimeResource::collection(Crime::latest()->get());
+    }
     public function store(Request $request)
     {
         // Validate incoming request data
@@ -59,9 +68,7 @@ class CrimeController extends Controller
 
     public function show(Crime $crime)
     {
-        if (auth()->user()->id !== $crime->user_id && !auth()->user()->is_admin) {
-            return response()->json(['message' => 'Unauthorized'], 403);
-        }
+     
         return new CrimeResource($crime);
     }
 

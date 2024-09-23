@@ -1,10 +1,10 @@
 <template>
   <div class="searchbar">
       <form action="">
-        <input type="text" placeholder="Search...." name="search" />
+        <input type="text" placeholder="Search...." name="search" v-model="title"/>
 
         <button type="submit">
-          <i class="fa fa-search"></i>
+          <i class="fas fa-search"></i>
         </button>
 
       </form>
@@ -46,16 +46,9 @@
   
 
       <!-- pagination -->
-      <div class="pagination" id="pagination">
-        <a href="">&laquo;</a>
-        <a class="active" href="">1</a>
-        <a href="">2</a>
-        <a href="">3</a>
-        <a href="">4</a>
-        <a href="">5</a>
-        <a href="">&raquo;</a>
-      </div>
+  
     </section>
+    <h3 v-if="!crimes.length">Sorry, no match was found!</h3>
 </template>
 
 <script>
@@ -64,8 +57,25 @@ export default {
 data() {
   return {
     crimes: [],
+    title:''
   };
 },
+watch: {
+    title() {
+      axios
+        .get("/api/crimes", {
+          params: {
+            search: this.title,
+          },
+        })
+        .then((response) => {
+          this.crimes = response.data.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 
 mounted() {
   axios
@@ -80,4 +90,11 @@ mounted() {
 
 <style scoped>
 @import 'resources/css/familydashboard.css';
+h3 {
+  font-size: 30px;
+  text-align: center;
+  margin: 50px 0;
+  color: #6B4935;
+  font-family: 'Dancing Script', cursive;
+}
 </style>

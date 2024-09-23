@@ -79,15 +79,65 @@
   
   <script>
   export default {
+    name: 'Home',
     methods: {
       goToRegisterPage() {
         this.$router.push('/register');
-        
       },
       goToLoginPage() {
-      this.$router.push('/login');
+        this.$router.push('/login');
+      },
     },
-    
+    mounted() {
+      // Your existing typing effect code here
+      const line1 = document.querySelector(".line-1");
+      const line2 = document.querySelector(".line-2");
+      const text1 = "Every crime "; // First line of text
+      const text2Part1 = "has a st"; // First part of the second line
+      const text2AfterWax = "ry."; // Text after the wax seal
+  
+      // Function to type text character by character
+      function textTypingEffect(element, text, i = 0, callback = null) {
+        if (i === 0) {
+          element.textContent = ""; // Clear text at the start
+        }
+        element.textContent += text[i]; // Add one character at a time
+        if (i === text.length - 1) {
+          if (callback) callback(); // Call the next function (for the wax seal) when done
+          return;
+        }
+        setTimeout(() => textTypingEffect(element, text, i + 1, callback), 100); // Typing speed
+      }
+  
+      // Function to type the second line and handle the wax seal insertion at the "o" position
+      function typeLine2WithWaxSeal(i = 0) {
+        if (i < text2Part1.length) {
+          line2.textContent += text2Part1[i]; // Type "has a st" normally
+          setTimeout(() => typeLine2WithWaxSeal(i + 1), 100);
+        } else {
+          // Insert the wax seal covering the "o"
+          line2.innerHTML += '<span class="waxed-o">o<span class="wax-container"><img src="pics/red-wax.png" alt="wax seal" class="wax-seal"></span></span>';
+          
+          // Add a pause before continuing to type after the wax seal
+          setTimeout(() => {
+            typeAfterWaxSeal(); // Start typing the "ry" after the wax seal
+          }, 2000); // 2 second delay for pause (adjust as needed)
+        }
+      }
+  
+      // Function to append text after the wax seal
+      function typeAfterWaxSeal(i = 0) {
+        const currentHTML = line2.innerHTML; // Preserve the current HTML with the wax seal
+        if (i === text2AfterWax.length) return; // Stop when all characters after wax are typed
+  
+        line2.innerHTML = currentHTML + text2AfterWax[i]; // Append characters after the wax seal
+        setTimeout(() => typeAfterWaxSeal(i + 1), 50);
+      }
+  
+      // Start the typing effect for line 1, then start line 2
+      textTypingEffect(line1, text1, 0, () => {
+        typeLine2WithWaxSeal(); // Start typing "has a st" and insert the wax seal in the right place
+      });
     }
   };
   </script>
