@@ -11,6 +11,8 @@ import FamilyAbout from '../pages/FamilyAbout.vue';
 import ReportCase from '../pages/ReportCase.vue';
 import FamilyCommunities from '../pages/FamilyCommunities.vue';
 import FamilySingleCase from '../pages/FamilySingleCase.vue';
+import FamilyShareCase from '../pages/FamilyShareCase.vue';
+import FamilyVictim from '../pages/FamilyVictim.vue';
 import CaseManagement from '../pages/CaseManagement.vue';
 import CreateCase from "../pages/CreateCase.vue";
 
@@ -73,6 +75,8 @@ const routes = [
       { path: 'about', name: 'FamilyAbout', component: FamilyAbout },
       { path: 'communities', name: 'FamilyCommunities', component: FamilyCommunities },
       { path: 'reportcase', name: 'ReportCase', component: ReportCase },
+      { path: 'sharecase', name: 'FamilyShareCase', component: FamilyShareCase},
+      { path: 'victim/:slug', name: 'FamilyVictim', component: FamilyVictim, props: true },
       { path: 'singlecase/:slug', name: 'FamilySingleCase', component: FamilySingleCase, props: true },
     ]
   },

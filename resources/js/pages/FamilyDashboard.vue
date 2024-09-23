@@ -14,6 +14,7 @@
         <ul>
          
           <li>  <router-link :to="{ name: 'FamilyCase' }">Cases</router-link ></li>
+            <li>  <router-link :to="{ name: 'FamilyShareCase' }">Family-Cases</router-link ></li>
           <li> <router-link :to="{ name: 'FamilyAbout' }">About-us</router-link ></li>
           <li> <router-link :to="{ name: 'FamilyCommunities' }">My communities</router-link ></li>
           <li> <router-link :to="{ name: 'ReportCase' }">Report a case </router-link ></li>

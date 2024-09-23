@@ -9,6 +9,7 @@ use App\Http\Controllers\CrimeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HouseController;
 use App\Http\Controllers\DashboardCrimeController;
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,14 @@ Route::middleware('auth:sanctum')->post('logout', [AuthenticatedSessionControlle
 
 //crimes-post route for family//
 Route::middleware('auth:sanctum')->post('posts', [PostController::class, 'store']);
+Route::get('home-posts', [HouseController::class, 'index']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
+
+
+
+
+
+
 
 //post route for admin//
 Route::middleware('auth:sanctum')->post('crimes', [CrimeController::class, 'store']);

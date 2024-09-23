@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Str;
+use App\Http\Resources\PostResource;
+
 
 class PostController extends Controller
 {
@@ -82,5 +84,9 @@ class PostController extends Controller
                 'message' => 'An error occurred: ' . $e->getMessage(),
             ], 500);
         }
+    }
+    public function show(Post $post)
+    {
+        return new PostResource($post);
     }
 }

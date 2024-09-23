@@ -58,7 +58,15 @@ export default {
     data() {
     return {
       success: false,
-      fields: {},
+      fields: {
+            full_name: '', 
+            victim_name: '',
+            description: '',
+            victim_image: null,
+            case_image: [],
+            case_video: [],
+            case_file: []
+        },
       errors: {},
       
     }
