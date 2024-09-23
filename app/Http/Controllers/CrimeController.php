@@ -16,10 +16,10 @@ class CrimeController extends Controller
     {
       if ($request->search) {
             return  CrimeResource::collection(Crime::where('title', 'like', '%' . $request->search . '%')
-                ->orWhere('desc', 'like', '%' . $request->search . '%')->latest()->get());
+                ->orWhere('desc', 'like', '%' . $request->search . '%')->latest()->paginate(1)->withQueryString());
         }
 
-        return CrimeResource::collection(Crime::latest()->get());
+        return CrimeResource::collection(Crime::latest()->paginate(1));
     }
     public function store(Request $request)
     {

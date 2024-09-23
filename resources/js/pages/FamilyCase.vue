@@ -1,4 +1,6 @@
 <template>
+  
+<div>
   <div class="searchbar">
       <form action="">
         <input type="text" placeholder="Search...." name="search" v-model="title"/>
@@ -45,22 +47,50 @@
 
   
 
-      <!-- pagination -->
+  
   
     </section>
     <h3 v-if="!crimes.length">Sorry, no match was found!</h3>
+    <div class="pagination" id="pagination">
+      <a
+        href="#"
+        v-for="(link, index) in links"
+        :key="index"
+        v-html="link.label"
+        :class="{ active: link.active, disabled: !link.url }"
+        @click="changePage(link)"
+      ></a>
+    </div>
+</div>
+ 
 </template>
 
 <script>
 export default {
-
-data() {
-  return {
-    crimes: [],
-    title:''
-  };
-},
-watch: {
+  data() {
+    return {
+      crimes: [],
+      title: '',
+      links: [],
+    };
+  },
+  methods: { 
+    changePage(link) {
+      if (!link.url || link.active) {
+        return; 
+      }
+      axios
+        .get(link.url)
+        .then((response) => {
+          this.crimes = response.data.data;
+          this.links = response.data.meta.links;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+  watch: {
     title() {
       axios
         .get("/api/crimes", {
@@ -70,21 +100,25 @@ watch: {
         })
         .then((response) => {
           this.crimes = response.data.data;
+          this.links = response.data.meta.links;
         })
         .catch((error) => {
           console.log(error);
         });
     },
   },
-
-mounted() {
-  axios
-    .get("/api/home-crimes")
-    .then((response) => (this.crimes = response.data.data))
-    .catch((error) => {
-      console.log(error);
-    });
-},
+  mounted() {
+    axios
+      .get("/api/crimes")
+      .then((response) => {
+        this.crimes = response.data.data;
+        console.log(response.data.meta.links);
+        this.links = response.data.meta.links;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 </script>
 
@@ -96,5 +130,8 @@ h3 {
   margin: 50px 0;
   color: #6B4935;
   font-family: 'Dancing Script', cursive;
+}
+.disabled {
+  pointer-events: none;
 }
 </style>
