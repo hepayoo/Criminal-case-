@@ -1,78 +1,83 @@
 <template>
-    <div >
-   
-    
-      <div id="wrapper">
-       
-    <!-- sidebar -->
-    <div class="sidebar">
-     
-      <span class="closeButton">&times;</span>
-      
-
-      <div class="side-links">
-        <ul>
-         
-          <li>  <router-link :to="{ name: 'FamilyCase' }">Cases</router-link ></li>
-            <li>  <router-link :to="{ name: 'FamilyShareCase' }">Family-Cases</router-link ></li>
-          <li> <router-link :to="{ name: 'FamilyAbout' }">About-us</router-link ></li>
-          <li> <router-link :to="{ name: 'FamilyCommunities' }">My communities</router-link ></li>
-          <li> <router-link :to="{ name: 'ReportCase' }">Report a case </router-link ></li>
-         
-        </ul>
-      </div>
-      <!-- sidebar footer -->
-    
-    </div>
-    <!-- Menu Button -->
-    <div class="menuButton">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-      
-    </div>
-
-    <!-- main -->
-    <main class="family-container">
-      <h1 class="welcome">Welcome {{ name }}🏛️</h1>
-        <div class="logout"><a href="#" @click="logout">Log out</a></div>
-      <router-view></router-view>
-     
-
-      <!-- Main footer -->
-    
-    </main>
-  </div>
-      
-    </div>
-  </template>
+  <div >
+ 
   
-  <script>
-  export default {
-    data() {
-      return {
-        name: "",
-      };
-    },
-    mounted() {
+    <div id="wrapper">
+     
+  <!-- sidebar -->
+  <div class="sidebar">
+   
+    <span class="closeButton">&times;</span>
+    
+
+    <div class="side-links">
+      <ul>
+       
+        <li>  <router-link :to="{ name: 'FamilyCase' }">Cases</router-link ></li>
+          <li>  <router-link :to="{ name: 'FamilyShareCase' }">Family-Cases</router-link ></li>
+        <li> <router-link :to="{ name: 'FamilyAbout' }">About-us</router-link ></li>
+        <li> <router-link :to="{ name: 'FamilyCommunities' }">My communities</router-link ></li>
+        <li> <router-link :to="{ name: 'ReportCase' }">Report a case </router-link ></li>
+       
+      </ul>
+    </div>
+    <!-- sidebar footer -->
+  
+  </div>
+  <!-- Menu Button -->
+  <div class="menuButton">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    
+  </div>
+
+  <!-- main -->
+  <main class="family-container">
+    <h1 class="welcome">Welcome {{ name }}🏛️</h1>
+      <div class="logout"><a href="#" @click="logout">Log out</a></div>
+      <router-view :user="{ id: userId, name: name }"></router-view>
+   
+
+    <!-- Main footer -->
+  
+  </main>
+</div>
+    
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      name: "",
+      userId: null,
+    };
+  },
+  mounted() {
+    axios
+      .get("/api/user")
+      .then((response) => {
+        this.name = response.data.name;
+        this.userId = response.data.id; // Ensure you get the user ID
+      })
+      .catch((error) => console.log(error));
+
+  },
+
+  methods: {
+    logout() {
       axios
-        .get("/api/user")
-        .then((response) => (this.name = response.data.name))
+        .post("/api/logout")
+        .then((response) => this.$router.push({ name: "Home" }))
         .catch((error) => console.log(error));
     },
-  
-    methods: {
-      logout() {
-        axios
-          .post("/api/logout")
-          .then((response) => this.$router.push({ name: "Home" }))
-          .catch((error) => console.log(error));
-      },
-    },
-  };
-  </script>
+  },
+};
+</script>
 
 <style scoped>
 
-  @import 'resources/css/familydashboard.css';
+@import 'resources/css/familydashboard.css';
 </style>

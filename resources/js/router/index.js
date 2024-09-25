@@ -73,7 +73,7 @@ const routes = [
     children: [
       { path: 'case', name: 'FamilyCase', component: FamilyCase }, // Fixed
       { path: 'about', name: 'FamilyAbout', component: FamilyAbout },
-      { path: 'communities', name: 'FamilyCommunities', component: FamilyCommunities },
+      { path: 'communities', name: 'FamilyCommunities', component: FamilyCommunities  },
       { path: 'reportcase', name: 'ReportCase', component: ReportCase },
       { path: 'sharecase', name: 'FamilyShareCase', component: FamilyShareCase},
       { path: 'victim/:slug', name: 'FamilyVictim', component: FamilyVictim, props: true },

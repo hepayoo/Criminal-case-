@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
 
 
 
@@ -16,11 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+Route::get('messages', [MessageController::class, 'fetchMessages']);
+Route::post('messages', [MessageController::class, 'sendMessage']);
 
 Route::get('/{any}', function () {
     return view('welcome');
 })->where('any', '.*');
+
+
+
+
 
 
 
