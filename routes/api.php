@@ -41,6 +41,7 @@ Route::middleware('auth:sanctum')->post('logout', [AuthenticatedSessionControlle
 Route::middleware('auth:sanctum')->post('posts', [PostController::class, 'store']);
 Route::get('home-posts', [HouseController::class, 'index']);
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('posts', [PostController::class, 'index']);
 
 
 

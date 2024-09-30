@@ -302,12 +302,12 @@ footer small {
 
 
   .content-overlay p {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: #6b4935;
     font-family: 'Dancing Script', cursive;
     position: absolute;
     top: 40%; /* Adjust to desired location */
-    left: 37%;
+    left: 47%;
    
   
     
@@ -380,8 +380,8 @@ footer small {
 
 .image-section img {
     border-radius: 10px;
-    width: 80%;
-    max-width: 500px;
+    width: 60%;
+    max-width: 250px;
 }
 
 .biography, .murders, .arrest, .Virified {

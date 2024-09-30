@@ -3,7 +3,7 @@
     <div>
       <div class="searchbar">
           <form action="">
-            <input type="text" placeholder="Search...." name="search" />
+            <input type="text" placeholder="Search...." name="search" v-model="title"/>
     
             <button type="submit">
               <i class="fas fa-search"></i>
@@ -33,6 +33,7 @@
             name: 'FamilyVictim',
             params: { slug: post.slug },
           }"
+          class="victim-name"  
           >{{ post.victim_name }}</router-link
         >
       </h4>
@@ -45,7 +46,7 @@
 
    
         </section>
-
+        <h3 v-if="!posts.length">Sorry, no match was found!</h3>
     </div>
      
     </template>
@@ -55,10 +56,28 @@
       data() {
         return {
           posts: [],
+          title: '',
          
           
         };
       },
+      watch: {
+      title() {
+        axios
+          .get("/api/posts", {
+            params: {
+              search: this.title,
+            },
+          })
+          .then((response) => {
+            this.posts = response.data.data;
+            
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      },
+    },
   
       mounted() {
         axios
@@ -83,4 +102,17 @@
     .disabled {
       pointer-events: none;
     }
+    .victim-name {
+  color: #914F1E; 
+  font-weight: bolder;
+  text-decoration: underline; 
+  cursor: pointer; 
+}
+
+.victim-name:hover {
+  color: #654520;
+  text-decoration: none; 
+}
+
+
     </style>

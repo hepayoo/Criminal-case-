@@ -27,19 +27,19 @@
             <br />
     
             <label for="biography">Biography:</label>
-            <textarea id="biography"  rows="4" v-model="fields.biography"></textarea>
+            <textarea id="biography"  rows="20" v-model="fields.biography"></textarea>
             <span v-if="errors.biography" class="error">{{ errors.biography[0] }}</span>
     
             <label for="murders">Murders:</label>
-            <textarea id="murders"  rows="2" v-model="fields.murders"></textarea>
+            <textarea id="murders"  rows="20" v-model="fields.murders"></textarea>
             <span v-if="errors.murders" class="error">{{ errors.murders[0] }}</span>
     
             <label for="arrest-prison-death">Arrest, Prison, and Death:</label>
-            <textarea id="arrest-prison-death"  rows="3" v-model="fields.arrests"></textarea>
+            <textarea id="arrest-prison-death"  rows="20" v-model="fields.arrests"></textarea>
             <span v-if="errors.arrests" class="error">{{ errors.arrests[0] }}</span>
     
             <label for="validated-sources">Validated Sources:</label>
-            <textarea id="validated-sources"  rows="2" v-model="fields.sources"></textarea>
+            <textarea id="validated-sources"  rows="4" v-model="fields.sources"></textarea>
             <span v-if="errors.sources" class="error">{{ errors.sources[0] }}</span>
     
             <button type="submit" class="submit-button">Submit</button>

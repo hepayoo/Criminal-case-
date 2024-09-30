@@ -10,6 +10,16 @@ use App\Http\Resources\PostResource;
 
 class PostController extends Controller
 {
+
+    public function index(Request $request)
+    {
+      if ($request->search) {
+            return  PostResource::collection(Post::where('victim_name', 'like', '%' . $request->search . '%')
+                ->orWhere('full_name', 'like', '%' . $request->search . '%')->latest()->paginate(4)->withQueryString());
+        }
+
+        return PostResource::collection(Post::latest()->get());
+    }
     public function store(Request $request)
     {
         // Validation rules for text fields and file uploads
