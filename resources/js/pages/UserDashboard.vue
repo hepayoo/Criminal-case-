@@ -20,6 +20,7 @@
       <ul>
        
         <li>  <router-link :to="{ name: 'UserCase' }">Cases</router-link ></li>
+        <li>  <router-link :to="{ name: 'UserShareCase' }">Family-Cases</router-link ></li>
         <li> <router-link :to="{ name: 'UserAbout' }">About-us</router-link ></li>
         <li> <router-link :to="{ name: 'UserCommunities' }">My communities</router-link ></li>
         
