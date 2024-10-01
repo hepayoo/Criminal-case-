@@ -1,7 +1,13 @@
 <template>
   <div >
  
-  
+    <header v-if="shouldShowHeader" class="header">
+      <div class="header-text">
+        <h1>Criminal-Case</h1>
+        <h4>Every crime has a story...</h4>
+      </div>
+     
+    </header>
     <div id="wrapper">
      
   <!-- sidebar -->
@@ -59,6 +65,16 @@ export default {
       .then((response) => (this.name = response.data.name))
       .catch((error) => console.log(error));
   },
+  computed: {
+    shouldShowWelcomeMessage() {
+     
+      return this.$route.name === 'UserDashboard'; 
+    },
+    shouldShowHeader() {
+     
+      return this.$route.name === 'UserDashboard'; 
+    },
+  },
 
   methods: {
     logout() {
@@ -74,5 +90,12 @@ export default {
 <style scoped>
 
 @import 'resources/css/familydashboard.css';
+.header-text {
+  position: relative; 
+  z-index: 10;
+  color:  #6B4935; 
+  Top:-10%;
+  left:10%;
+}
 </style>
   

@@ -1,9 +1,16 @@
 <template>
+
   <div >
  
-  
-    <div id="wrapper">
+    <header v-if="shouldShowHeader" class="header">
+      <div class="header-text">
+        <h1>Criminal-Case</h1>
+        <h4>Every crime has a story...</h4>
+      </div>
      
+    </header>
+    <div id="wrapper">
+  
   <!-- sidebar -->
   <div class="sidebar">
    
@@ -24,13 +31,7 @@
     <!-- sidebar footer -->
   
   </div>
-  <!-- Menu Button -->
-  <div class="menuButton">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    
-  </div>
+
 
   <!-- main -->
   <main class="family-container">
@@ -60,10 +61,21 @@ export default {
       .get("/api/user")
       .then((response) => {
         this.name = response.data.name;
-        this.userId = response.data.id; // Ensure you get the user ID
+        this.userId = response.data.id; 
       })
       .catch((error) => console.log(error));
 
+  },
+
+  computed: {
+    shouldShowWelcomeMessage() {
+     
+      return this.$route.name === 'FamilyDashboard'; 
+    },
+    shouldShowHeader() {
+     
+      return this.$route.name === 'FamilyDashboard'; 
+    },
   },
 
   methods: {
@@ -80,4 +92,19 @@ export default {
 <style scoped>
 
 @import 'resources/css/familydashboard.css';
+
+
+
+.header-text {
+  position: relative; 
+  z-index: 10;
+  color:  #6B4935; 
+  Top:-10%;
+  left:10%;
+}
+
+
+
+
+
 </style>

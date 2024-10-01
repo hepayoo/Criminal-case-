@@ -47,6 +47,16 @@
    
         </section>
         <h3 v-if="!posts.length">Sorry, no match was found!</h3>
+        <div class="pagination" id="pagination">
+        <a
+          href="#"
+          v-for="(link, index) in links"
+          :key="index"
+          v-html="link.label"
+          :class="{ active: link.active, disabled: !link.url }"
+          @click="changePage(link)"
+        ></a>
+      </div>
     </div>
      
     </template>
@@ -57,10 +67,27 @@
         return {
           posts: [],
           title: '',
+          links: [],
          
           
         };
       },
+      methods: { 
+      changePage(link) {
+        if (!link.url || link.active) {
+          return; 
+        }
+        axios
+          .get(link.url)
+          .then((response) => {
+            this.posts = response.data.data;
+            this.links = response.data.meta.links;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      },
+    },
       watch: {
       title() {
         axios
@@ -71,6 +98,7 @@
           })
           .then((response) => {
             this.posts = response.data.data;
+            this.links = response.data.meta.links;
             
           })
           .catch((error) => {
@@ -81,8 +109,12 @@
   
       mounted() {
         axios
-      .get("/api/home-posts")
-      .then((response) => (this.posts = response.data.data))
+      .get("/api/posts")
+      .then((response) => {
+          this.posts = response.data.data;
+          console.log(response.data.meta.links);
+          this.links = response.data.meta.links;
+        })
       .catch((error) => {
         console.log(error);
       });

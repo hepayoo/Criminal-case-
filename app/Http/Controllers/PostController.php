@@ -18,7 +18,7 @@ class PostController extends Controller
                 ->orWhere('full_name', 'like', '%' . $request->search . '%')->latest()->paginate(4)->withQueryString());
         }
 
-        return PostResource::collection(Post::latest()->get());
+        return PostResource::collection(Post::latest()->paginate(4));
     }
     public function store(Request $request)
     {
