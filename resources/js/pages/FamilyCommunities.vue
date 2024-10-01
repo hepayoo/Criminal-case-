@@ -2,7 +2,8 @@
     <div class="chat-container">
       <div class="chat-card">
         <div class="chat-header">
-          <h3>Group Chat</h3>
+          <h3>The Detective's Board</h3>
+          <span class="chat-motto">"Follow the clues, uncover the truth"</span>
         </div>
         <div class="chat-messages">
           <div
@@ -91,108 +92,165 @@
   
   
   
+
   <style scoped>
+  /* Vintage Crime Theme */
   .chat-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 103vh;
+    position: relative;
+    font-family: 'Old Standard TT', serif; /* Vintage serif font */
+    color: #e3c5b5; /* Old parchment text color */
+    padding: 55px;
+    width: 101%;
+   
   }
   
   .chat-card {
-    background-color: #f0f0f0;
-    color: black;
-    padding: 20px;
+    background-color: rgba(25, 25, 25, 0.9); /* Dark vintage look */
+    border: 2px solid #5c5c5c; /* Dark brass border */
+    padding: 10px;
     flex-grow: 1;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+    position: relative;
     overflow-y: auto;
+    margin-bottom: 10px;
+ 
   }
   
   .chat-header {
     text-align: center;
-    font-size: 1.5rem;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: #d8c48c; 
+    border-bottom: 2px solid #e3c5b5;
+    padding-bottom: 0px;
+    font-family: 'Libre Baskerville', serif;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+    margin-bottom: 7px;
+  }
+  
+  .chat-motto {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #c2b29c;
   }
   
   .chat-messages {
-    flex-grow: 1;
-    padding-bottom: 100px;
+    padding-bottom: 90px;
     display: flex;
     flex-direction: column;
+    gap: 14px; 
   }
   
   .message {
     display: flex;
-    margin-bottom: 10px;
+    font-size: 1.1rem;
+    padding: 2px;
+    border-radius: 10px;
+    background: rgba(43, 43, 43, 0.8);
+    border: 1px solid #7a6d58; 
+    color: #e0d6cb; 
+    animation: fadeIn 0.3s ease-in-out; 
   }
   
   .sent {
-    justify-content: flex-end !important;
-     /* Align sent messages to the right */
+    justify-content: flex-end;
   }
   
   .received {
-    justify-content: flex-start !important;
-      /* Align received messages to the left */
+    justify-content: flex-start;
   }
   
   .message-info {
-    max-width: 70%;
+    max-width: 40%;
+    padding: 4px;
+    border-radius: 5px;
   }
   
   .user-name {
-    font-size: 0.8rem;
+    font-size: 1.3rem;
     font-weight: bold;
-    margin-bottom: 5px;
+    color: #d3b59d; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
   
   .message-content {
-    padding: 10px;
-    border-radius: 10px;
-    color: white;
-    position: relative;
-  }
-  
-  .sent .message-content {
-    background-color: #007aff; /* Sent message color */
-  }
-  
-  .received .message-content {
-    background-color: #ececec; /* Received message color */
-    color: black;
+    margin-top: 5px;
+    color: #f1e8d7; 
   }
   
   .message-time {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-style: italic;
-    margin-top: 5px;
+    color: #b3a78a;
+    text-align: right;
   }
   
   .chat-footer {
     display: flex;
-    padding: 10px;
-    background-color: #fff;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-top: 2px solid #5c5c5c;
+    border-radius: 13px;
   }
   
   textarea {
     width: 80%;
-    height: 50px;
-    padding: 10px;
+    height: 30px;
+    padding: 15px;
     resize: none;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    background-color: rgba(43, 43, 43, 0.9);
+    border: 2px solid #5c5c5c;
+    color: #f2e3d2;
+    font-family: 'Old Standard TT', serif;
   }
   
   .send-btn {
-    width: 20%;
-    background-color: #007aff;
+    width: 15%;
+    background-color: #7a6353; 
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 10px;
     cursor: pointer;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+   
+    transition: background-color 0.3s ease;
+  }
+  
+  .send-btn:hover {
+    background-color: #b39a7e; 
+  }
+  
+ 
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter, .fade-leave-to  {
+    opacity: 0;
+  }
+  
+  /* Fade in effect for messages */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   </style>
+  
+  
+  
   
   

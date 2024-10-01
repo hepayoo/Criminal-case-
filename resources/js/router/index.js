@@ -86,9 +86,9 @@ const routes = [
     component: UserDashboard,
     meta: { requiresAuth: true },
     children: [
-      { path: 'case', name: 'UserCase', component: UserCase }, // Fixed
+      { path: 'case', name: 'UserCase', component: UserCase }, 
       { path: 'about', name: 'UserAbout', component: UserAbout },
-      { path: 'communities', name: 'UserCommunities', component: UserCommunities },
+      { path: 'communities', name: 'UserCommunities', component: FamilyCommunities },
       { path: 'singlecase/:slug', name: 'UserSingleCase', component: UserSingleCase, props: true },
     ]
   },

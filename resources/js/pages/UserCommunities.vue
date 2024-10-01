@@ -1,3 +1,1 @@
-<template>
-    communities
-</template>
+<template></template>

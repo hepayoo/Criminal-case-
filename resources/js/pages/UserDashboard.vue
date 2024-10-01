@@ -29,19 +29,13 @@
     <!-- sidebar footer -->
   
   </div>
-  <!-- Menu Button -->
-  <div class="menuButton">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    
-  </div>
+
 
   <!-- main -->
   <main class="family-container">
     <h1 class="welcome">Welcome {{ name }}🔍</h1>
       <div class="logout"><a href="#" @click="logout">Log out</a></div>
-    <router-view></router-view>
+      <router-view :user="{ id: userId, name: name }"></router-view>
    
 
     <!-- Main footer -->
@@ -57,12 +51,16 @@ export default {
   data() {
     return {
       name: "",
+      userId: null,
     };
   },
   mounted() {
     axios
       .get("/api/user")
-      .then((response) => (this.name = response.data.name))
+      .then((response) => {
+        this.name = response.data.name;
+        this.userId = response.data.id; 
+      })
       .catch((error) => console.log(error));
   },
   computed: {
