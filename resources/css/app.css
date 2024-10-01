@@ -94,6 +94,7 @@ body {
     position: absolute;
     margin-left: 58%;
    margin-top: 35%;
+  
     
 }
 
@@ -235,13 +236,15 @@ body {
 }
 
 .about-us{
-    left: 55%;
+    left: 54%;
     position: relative;
+    top: 37px;
+    
 
 }
 .content{
 
-    margin-bottom: 18%;
+    margin-bottom: 20%;
     margin-top: -0.6%;
 
 }
@@ -264,14 +267,14 @@ body {
     cursor: pointer;
 }
 .candle {
-    position: absolute; /* Change to absolute for more control */
+    position: absolute; 
     width: 10%;
-    transform: none; /* Remove the transform to see if it resolves the issue */
+    transform: none; 
     margin: 0;
     padding: 0;
     display: block;
-    bottom: 0; /* Position it at the bottom of the footer */
-    left: 50%; /* Center it horizontally */
+    bottom: 0; 
+    left: 50%; 
     transform: translateX(-42rem); /* Center the image horizontally */
 }
 
@@ -363,7 +366,7 @@ body {
     margin-top: 30%;
   }
   
-  /* ------ On check event ------ */
+  
   .container input:checked ~ .play {
     display: none;
   }
@@ -372,7 +375,7 @@ body {
     display: block;
   }
   
-  /* ------ Hide the default checkbox ------ */
+ 
   .container input {
     position: absolute;
     opacity: 0;

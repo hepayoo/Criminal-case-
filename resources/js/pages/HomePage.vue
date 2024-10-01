@@ -1,59 +1,53 @@
 <template>
-      <div class="papers">
-        <img :src="'/pics/vintage.png'" alt="" class="vintage">
-        <img :src="'/pics/war-card.png'" alt="" class="card">
-        <img :src="'/pics/Case File.svg'" alt="" class="case">
-        <img :src="'/pics/stick.png'" alt="" class="stick">
-    </div>
-    <div class="bg">
-        <img :src="'/pics/les empreintes.png'" alt="" class="empreintes">
-    </div>
+  <div class="papers">
+    <img :src="'/pics/vintage.png'" alt="" class="vintage">
+    <img :src="'/pics/war-card.png'" alt="" class="card">
+    <img :src="'/pics/Case File.svg'" alt="" class="case">
+    <img :src="'/pics/stick.png'" alt="" class="stick">
+  </div>
+  <div class="bg">
+    <img :src="'/pics/les empreintes.png'" alt="" class="empreintes">
+  </div>
 
-    <div class="text-container">
-        <div class="text">
-            
-            <h1 class="line-1 typing-effect"></h1> <!-- Container for the first part of the text -->
-            <h1 class="line-2 typing-effect-2"></h1> <!-- Container for the second part with wax seal -->
-          
-        </div>
-
-        
-<label class="container">
-  <input checked="checked" type="checkbox" id="startButton">
-    <svg viewBox="0 0 384 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="play"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path></svg>
-    <svg viewBox="0 0 320 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="pause"><path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"></path></svg></label>
-
-        <div class="buttons">
-            <button @click="goToLoginPage"><a class="button-1" ><span class="spn2">The Stories</span></a></button>
-            <button class="button-2" @click="goToRegisterPage">Register</button>
-        </div>
-
-        <div class="criminals-pic">
-            <img :src="'/pics/criminals.svg'" alt="" class="criminals">
-        </div>
-
-        <div class="serial-killers">
-            <img :src="'/pics/jeffry-dhamer.svg'" alt="" class="jeffry-dhamer">
-            <img :src="'/pics/Raya-Sakina.svg'" alt="" class="jeffry-dhamer">
-            <img :src="'/pics/Ted-bundy.svg'" alt="" class="jeffry-dhamer">
-            <img :src="'/pics/Papir.svg'" alt="" class="jeffry-dhamer">
-        </div>
+  <div class="text-container">
+    <div class="text">
+      <h1 class="line-1 typing-effect"></h1>
+      <h1 class="line-2 typing-effect-2"></h1>
     </div>
 
-    
-    <div class="footer">
-       <div class="about-us">
-        <h2 class="topic">About us</h2>
-        <p class="content">Explore the dark world of crime, revealing the stories behind <br> history's most notorious cases. Through detailed research and<br> captivating storytelling, we bring you closer to the truth of<br> infamous criminals and unsolved mysteries. Join us as we uncover <br>the secrets, one crime at a time.</p>
-       </div>
-       <div class="contact-us">
-        <h1 class="infos">Contact Us</h1>
-        <p class="gmail">CrimeStory@gmail.com </p>
-        <p class="phone-number">+117 445 778 667 </p>
-       </div>
-      
-      
-       <div class="parent">
+   
+
+    <div class="buttons">
+      <button @click="goToLoginPage">
+        <a class="button-1"><span class="spn2">The Stories</span></a>
+      </button>
+      <button class="button-2" @click="goToRegisterPage">Register</button>
+    </div>
+
+    <div class="criminals-pic">
+      <img :src="'/pics/criminals.svg'" alt="" class="criminals">
+    </div>
+
+    <div class="serial-killers">
+      <img :src="'/pics/jeffry-dhamer.svg'" alt="" class="jeffry-dhamer">
+      <img :src="'/pics/Raya-Sakina.svg'" alt="" class="jeffry-dhamer">
+      <img :src="'/pics/Ted-bundy.svg'" alt="" class="jeffry-dhamer">
+      <img :src="'/pics/Papir.svg'" alt="" class="jeffry-dhamer">
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="about-us">
+      <h2 class="topic">About us</h2>
+      <p class="content">Explore the dark world of crime, revealing the stories behind <br> history's most notorious cases. Through detailed research and<br> captivating storytelling, we bring you closer to the truth of<br> infamous criminals and unsolved mysteries. Join us as we uncover <br>the secrets, one crime at a time.</p>
+    </div>
+    <div class="contact-us">
+      <h1 class="infos">Contact Us</h1>
+      <p class="gmail">CrimeStory@gmail.com</p>
+      <p class="phone-number">+117 445 778 667</p>
+    </div>
+
+    <div class="parent">
        <div class="child child-1">
          <button class="button btn-1">
          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" fill="#5B3822"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
@@ -72,10 +66,9 @@
        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512" fill="#5B3822"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg></button>
        </div>
        </div>
+  </div>
+</template>
 
-       <img :src="'pics/t-l-chargement-unscreen.gif'" alt="" class="candle">
-    </div>
-  </template>
   
   <script>
   export default {
@@ -89,54 +82,54 @@
       },
     },
     mounted() {
-      // Your existing typing effect code here
+     
       const line1 = document.querySelector(".line-1");
       const line2 = document.querySelector(".line-2");
-      const text1 = "Every crime "; // First line of text
-      const text2Part1 = "has a st"; // First part of the second line
-      const text2AfterWax = "ry."; // Text after the wax seal
+      const text1 = "Every crime "; 
+      const text2Part1 = "has a st"; 
+      const text2AfterWax = "ry."; 
   
-      // Function to type text character by character
+      
       function textTypingEffect(element, text, i = 0, callback = null) {
         if (i === 0) {
-          element.textContent = ""; // Clear text at the start
+          element.textContent = ""; 
         }
-        element.textContent += text[i]; // Add one character at a time
+        element.textContent += text[i]; 
         if (i === text.length - 1) {
-          if (callback) callback(); // Call the next function (for the wax seal) when done
+          if (callback) callback(); 
           return;
         }
-        setTimeout(() => textTypingEffect(element, text, i + 1, callback), 100); // Typing speed
+        setTimeout(() => textTypingEffect(element, text, i + 1, callback), 100); 
       }
   
-      // Function to type the second line and handle the wax seal insertion at the "o" position
+      
       function typeLine2WithWaxSeal(i = 0) {
         if (i < text2Part1.length) {
-          line2.textContent += text2Part1[i]; // Type "has a st" normally
+          line2.textContent += text2Part1[i]; 
           setTimeout(() => typeLine2WithWaxSeal(i + 1), 100);
         } else {
-          // Insert the wax seal covering the "o"
+          
           line2.innerHTML += '<span class="waxed-o">o<span class="wax-container"><img src="pics/red-wax.png" alt="wax seal" class="wax-seal"></span></span>';
           
-          // Add a pause before continuing to type after the wax seal
+         
           setTimeout(() => {
-            typeAfterWaxSeal(); // Start typing the "ry" after the wax seal
-          }, 2000); // 2 second delay for pause (adjust as needed)
+            typeAfterWaxSeal(); 
+          }, 1000); 
         }
       }
   
-      // Function to append text after the wax seal
+      
       function typeAfterWaxSeal(i = 0) {
-        const currentHTML = line2.innerHTML; // Preserve the current HTML with the wax seal
-        if (i === text2AfterWax.length) return; // Stop when all characters after wax are typed
+        const currentHTML = line2.innerHTML; 
+        if (i === text2AfterWax.length) return; 
   
-        line2.innerHTML = currentHTML + text2AfterWax[i]; // Append characters after the wax seal
+        line2.innerHTML = currentHTML + text2AfterWax[i];
         setTimeout(() => typeAfterWaxSeal(i + 1), 50);
       }
   
-      // Start the typing effect for line 1, then start line 2
+      
       textTypingEffect(line1, text1, 0, () => {
-        typeLine2WithWaxSeal(); // Start typing "has a st" and insert the wax seal in the right place
+        typeLine2WithWaxSeal();
       });
     }
   };

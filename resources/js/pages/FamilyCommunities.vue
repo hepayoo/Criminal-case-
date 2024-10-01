@@ -63,6 +63,7 @@
         axios.post('/messages', { message: this.message }).then(response => {
           this.message = '';
           this.fetchMessages();
+          setTimeout(this.scrollToEnd, 100);
         });
       },
       fetchMessages() {
@@ -70,16 +71,24 @@
           this.allMessages = response.data;
         });
       },
+      
+      scrollToEnd() {
+  const chatMessages = this.$el.querySelector('.chat-messages');
+  if (chatMessages) {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+},
       formatTime(dateString) {
         const date = new Date(dateString);
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       },
     },
     mounted() {
-      console.log('User ID:', this.user.id); // Log the user ID
+      console.log('User ID:', this.user.id); 
       Echo.private('lchat').listen('MessageSent', (e) => {
         this.allMessages.push(e.message);
-        console.log('New Message User ID:', e.message.user_id); // Log new message user ID
+        console.log('New Message User ID:', e.message.user_id); 
+        setTimeout(this.scrollToEnd, 100);
       });
     },
     created() {
@@ -211,7 +220,7 @@
   }
   
   .send-btn {
-    width: 15%;
+    width: 18%;
     background-color: #7a6353; 
     color: white;
     border: none;

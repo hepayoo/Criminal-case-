@@ -114,21 +114,40 @@ const getUser = async () => {
 
 router.beforeEach(async (to, from, next) => {
   const user = await getUser(); 
+
+  
   if (to.matched.some(record => record.meta.requiresAuth)) {
+    
     if (!user) {
-      next({ name: 'Login' });
-    } else if (user.is_admin == 1 && to.name !== 'Dashboard' && to.name !== 'CreateCase' && to.name !== 'EditCases') {
-      next({ name: 'Dashboard' });
-    } else if (to.name === 'FamilyDashboard' && user.role !== 'family') {
-      next({ name: 'UserDashboard' });
-    } else if (to.name === 'UserDashboard' && user.role !== 'user') {
-      next({ name: 'FamilyDashboard' });
-    } else {
-      next();
+     
+      return next({ name: 'Login' });
     }
-  } else {
-    next();
+
+    
+    if (user.is_admin == 1 && !['Dashboard', 'CreateCase', 'EditCases'].includes(to.name)) {
+      return next({ name: 'Dashboard' }); 
+    }
+
+   
+    if (to.path.startsWith('/family-dashboard') && user.role !== 'family') {
+     
+      return next({ name: 'UserDashboard' });
+    }
+
+   
+    if (to.path.startsWith('/user-dashboard') && user.role !== 'user') {
+     
+      return next({ name: 'FamilyDashboard' });
+    }
+
+   
+    return next();
   }
+
+ 
+  next();
 });
+
+
 
 export default router;
